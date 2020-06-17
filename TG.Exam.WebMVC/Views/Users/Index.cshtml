@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Salestech.Exam.WebMVC.Models.UserViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).on('click', '#makeAsyncCall', function () {
+        $.ajax({
+            url: "/Users/IndexUsers",
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            cache: false,
+            async: true,
+            success: function (a) {
+                window.location.href = '/Users/IndexUsers'
+
+            }
+        });
+
+    });
+</script>
+
+<h2>Index</h2>
+
+<p>
+    <input type="button" value="Make Async Call" id="makeAsyncCall" />
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Method)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Method)
+            </td>
+        </tr>
+    }
+
+</table>
